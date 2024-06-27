@@ -101,11 +101,11 @@ function fetchWeatherData() {
         // Getting the corresponding icon url for the weather and 
         // extract a part of it
         const iconId = data.current.condition.icon.substr(
-            "//cdn.weatherapi.com/weather/64x64".length);
+            "//cdn.weatherapi.com/weather/64x64/".length);
 
         // Reformat the icon url to your own local folder path 
         // and add it to the page
-        icon.src = "./icons" + iconId;
+        icon.src = `./icons` + iconId;
 
         // Add the weather details to the page
         cloudOutput.innerHTML = data.current.cloud + "%";
