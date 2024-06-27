@@ -115,3 +115,17 @@ h1, h3 {
     background: #fff !important;
     color: #000;
 }
+
+.search {
+    background: none;
+    border: none;
+    border-bottom: 1px #ccc solid;
+    padding: 0 1em 0.5em 0;
+    font-size: 1.1em;
+}
+.search:focus {
+    outline: none;
+}
+.search::placeholder {
+    color: #ccc;
+}
