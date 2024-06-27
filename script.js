@@ -24,6 +24,28 @@ cities.forEach(city=> {
         // Function that fetches and displays all the 
         // data from the Weather API
         fetchWeatherData()
+        // fade out the app (simple animation)
         app.style.opacity = "0";
-    } )
+    });
+})
+
+// Submit event to the form
+form.addEventListener("submit", (e)=> {
+    // if the input field (search bar) is
+    // empty, throw an alert
+    if(search.value.length == 0) {
+        alert("Please type in a city name");
+    } else {
+        // Change from default city to the 
+        // one written in the input field
+        cityInput = search.value;
+        // Function that fetches and displays all the
+        // data from the Weather API
+        fetchWeatherData()
+        // Remove all text from the input field
+        search.value = "";
+        // fade out the app (simple animation)
+        app.style.opacity = "0";
+    }
+    e.preventDefault();
 })
