@@ -5,7 +5,7 @@ const timeOutput = document.querySelector(".time");
 const conditionOutput = document.querySelector(".condition");
 const nameOutput = document.querySelector(".name");
 const icon = document.querySelector(".icon");
-const cloutOutput = document.querySelector(".cloud");
+const cloudOutput = document.querySelector(".cloud");
 const humidityOutput = document.querySelector(".humidity");
 const windOutput = document.querySelector(".wind");
 const form = document.querySelector("#locationInput");
@@ -89,6 +89,28 @@ function fetchWeatherData() {
         const d = parseInt(date.substr(8, 2));
         const time = date.substr(11);
 
+        //  Reformat the date into something more appealing add it to the page
+        //  original: 2024-06-27 17:53
+        //  New format: 17:53 - Thursday 27, 06 2024
+        dateOutput.innerHTML = `${dayOfTheWeek(m, d, y)} ${m}, ${d}, ${y}`;
+        timeOutput.innerHTML = time;
+
+        // Add the name of the city into the page
+        nameOutput.innerHTML = data.location.name;
+
+        // Getting the corresponding icon url for the weather and 
+        // extract a part of it
+        const iconId = data.current.condition.icon.substr(
+            "//cdn.weatherapi.com/weather/64x64".length);
+
+        // Reformat the icon url to your own local folder path 
+        // and add it to the page
+        icon.src = "./icons" + iconId;
+
+        // Add the weather details to the page
+        cloudOutput.innerHTML = data.current.cloud + "%";
+        humidityOutput.innerHTML = data.current.humidity + "%";
+        windOutput.innerHTML = data.current.wind_mph + " mph";
 
     })
 }
