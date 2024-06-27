@@ -11,7 +11,7 @@ const windOutput = document.querySelector(".wind");
 const form = document.querySelector("#locationInput");
 const search = document.querySelector(".search");
 const btn = document.querySelector(".submit");
-const cities = document.querySelector(".city");
+const cities = document.querySelectorAll(".city");
 
 // Default city when the page loads
 let cityInput = "London";
@@ -64,3 +64,32 @@ function dayOfTheWeek(day, month, year) {
     ];
     return weekday[new Date(`${day}/${month}/${year}`).getDay()]
 }
+
+// Function that fetches and displays the data from the weather API
+function fetchWeatherData() {
+    // Fetch the data and dynamicaly add the city name
+    // with template literals
+    fetch(`http://api.weatherapi.com/v1/current.json?key=2dff0dc594da402c997192633242706&q=${cityInput}`)
+    // Taking the data (which is in JSON format)
+    // and converting it to a JavaScript object
+    .then(response => response.json())
+    .then(data=> {
+        // console logging the data to see what is available
+        console.log(data);
+
+        // adding the Temperature and weather condition to the page
+        temp.innerHTML = data.current.temp_f + "&#176";
+        conditionOutput.innerHTML = data.current.condition.text;
+
+        // Getting the data and time from the city and extract
+        // the dat, month, year and time into individual variables
+        const date = data.location.localtime;
+        const y = parseInt(date.substr(0, 4));
+        const m = parseInt(date.substr(5, 2));
+        const d = parseInt(date.substr(8, 2));
+        const time = date.substr(11);
+
+
+    })
+}
+fetchWeatherData()
