@@ -12,3 +12,18 @@ const form = document.querySelector("#locationInput");
 const search = document.querySelector(".search");
 const btn = document.querySelector(".submit");
 const cities = document.querySelector(".city");
+
+// Default city when the page loads
+let cityInput = "London";
+
+// Add click event to each city in the panel
+cities.forEach(city=> {
+    city.addEventListener("click", (e) => {
+        // Change from default city to the clicke one
+        cityInput = e.target.innerHTML;
+        // Function that fetches and displays all the 
+        // data from the Weather API
+        fetchWeatherData()
+        app.style.opacity = "0";
+    } )
+})
