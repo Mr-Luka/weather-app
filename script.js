@@ -112,6 +112,83 @@ function fetchWeatherData() {
         humidityOutput.innerHTML = data.current.humidity + "%";
         windOutput.innerHTML = data.current.wind_mph + " mph";
 
+        //Set default time of day
+        let timeOfDay = "day";
+
+        // Get the unique id for each weather condition;
+        const code = data.current.condition.code
+
+        // Change to night if its night time in the city
+        if (!data.current.is_day) {
+            timeOfDay = "night";
+        }
+
+        if(code == 1000) {
+            // Set the background image to clear if the weather is clear
+            app.style.backgroundImage = `url(.img/${timeOfDay}/clear.jpg)`;
+            // Change the button bg color depending on if its day or night
+            btn.style.background = "#e5ba92";
+            if(timeOfDay == "night") {
+                btw.style.background = "#181e27";
+            }
+            // Same thing for cloudy weather
+        } else if (
+            code == 1003 ||
+            code == 1006 ||
+            code == 1009 ||
+            code == 1030 ||
+            code == 1069 ||
+            code == 1087 ||
+            code == 1135 ||
+            code == 1273 ||
+            code == 1276 ||
+            code == 1279 ||
+            code == 1282
+            ) {
+                app.style.bacgroundImage = 
+                `url(./img/${timeOfDay}/cloudy.jpg)`;
+                btn.style.background = "#fa6d1b";
+                if(timeOfDay == "night") {
+                    btn.style.background = "#181e27";
+                }
+            } // and rain
+            else if (
+                code == 1063 ||
+                code == 1069 ||
+                code == 1072 ||
+                code == 1150 ||
+                code == 1153 ||
+                code == 1180 ||
+                code == 1183 ||
+                code == 1186 ||
+                code == 1189 ||
+                code == 1192 ||
+                code == 1195 ||
+                code == 1204 ||
+                code == 1207 ||
+                code == 1240 ||
+                code == 1243 ||
+                code == 1246 ||
+                code == 1249 ||
+                code == 1252 
+            ) {
+                app.style.backgroundImage = 
+                `url(./img/${timeOfDay}/rain.jpg)`;
+                btn.style.bacgkround = "#647d75";
+                if(timeOfDay == "night") {
+                    btn.style.background = "#325c80";
+                } 
+            } // and Snow 
+               else {
+                app.style.backgroundImage = `url(./img/${timeOfDay}/snow.jpg)`;
+                btn.style.background = "#4d72aa";
+                if (timeOfDay == "night") {
+                btn.style.background = "#1b1b1b";
+               }
+            }
+            app.style.opacity = "1"
+        
+
     })
 }
 fetchWeatherData()
