@@ -105,7 +105,7 @@ function fetchWeatherData() {
 
         // Reformat the icon url to your own local folder path 
         // and add it to the page
-        icon.src = `./icons` + iconId;
+        icon.src = "./icons/" + iconId;
 
         // Add the weather details to the page
         cloudOutput.innerHTML = data.current.cloud + "%";
