@@ -125,7 +125,7 @@ function fetchWeatherData() {
 
         if(code == 1000) {
             // Set the background image to clear if the weather is clear
-            app.style.backgroundImage = `url(.img/${timeOfDay}/clear.jpg)`;
+            app.style.backgroundImage = `url(./img/${timeOfDay}/clear.jpg)`;
             // Change the button bg color depending on if its day or night
             btn.style.background = "#e5ba92";
             if(timeOfDay == "night") {
@@ -145,7 +145,7 @@ function fetchWeatherData() {
             code == 1279 ||
             code == 1282
             ) {
-                app.style.bacgroundImage = 
+                app.style.backgroundImage = 
                 `url(./img/${timeOfDay}/cloudy.jpg)`;
                 btn.style.background = "#fa6d1b";
                 if(timeOfDay == "night") {
@@ -174,7 +174,7 @@ function fetchWeatherData() {
             ) {
                 app.style.backgroundImage = 
                 `url(./img/${timeOfDay}/rain.jpg)`;
-                btn.style.bacgkround = "#647d75";
+                btn.style.background = "#647d75";
                 if(timeOfDay == "night") {
                     btn.style.background = "#325c80";
                 } 
@@ -187,8 +187,12 @@ function fetchWeatherData() {
                }
             }
             app.style.opacity = "1"
-        
-
     })
+    .catch(()=> {
+        alert("City not found, please try again");
+        app.style.opacity = "1";
+    });
 }
 fetchWeatherData()
+
+app.style.opacity = "1";
